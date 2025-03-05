@@ -1,11 +1,11 @@
 if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    node1 = "#547c74"
-    node2 = "#547c74"
-    node3 = "#4c746c"
+    node1 = "#222"
+    node2 = "#333"
+    node3 = "#444"
 } else {
-    node1 = "#124e44"
-    node2 = "#1c645c"
-    node3 = "#1c6c5c"
+    node1 = "#BBB"
+    node2 = "#AAA"
+    node3 = "#999"
 }
 
 particlesJS("particles-js", {
