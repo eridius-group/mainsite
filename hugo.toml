@@ -1,0 +1,19 @@
+baseURL = 'https://eridius.org/'
+languageCode = 'en-us'
+title = 'Eridius Group'
+theme = 'eridius'
+
+[[menus.main]]
+name = 'Home'
+pageRef = '/'
+weight = 10
+
+[[menus.main]]
+name = 'Team'
+url = '/#team'
+weight = 20
+
+[[menus.main]]
+name = 'Blog'
+pageRef = '/blog'
+weight = 30

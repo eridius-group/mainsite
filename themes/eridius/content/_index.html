@@ -1,0 +1,166 @@
++++
+title = 'Home'
+date = 2023-01-01T08:00:00-07:00
+draft = false
++++
+<dialog id="copied">
+    <form method="dialog">
+        <h2>Copied to Clipboard</h2>
+        <p>We couldn't open the share dialog, but we copied our link for you. Paste away!</p>
+        <button type="submit">OK</button>
+    </form>
+</dialog>
+<br />
+<section>
+    <h2>Who we are.</h2>
+    <p>
+        Our goal is to produce user-friendly, privacy-respecting, security-focused, source-available software for
+        <b>you</b>. We will never use your data to target you with advertisements, sell your data to third parties,
+        or use what you do in some irrelevant AI. We are a for-profit organization that believes in the privacy and
+        safety of the user.
+    </p>
+    <p>If you support our mission, you can <a id="share_btn" href="#copied">share the news</a> or even <a href="https://www.paypal.com/donate/?hosted_button_id=WXXGWC95X2GFE">consider donating</a>. </p>
+</section>
+<br />
+<aside>
+    <section>
+        <h2>Privacy is not optional.</h2>
+        <p>
+            At Eridius, we make every effort possible to respect your privacy. We only collect information needed to
+            keep the consumer safe - we don't use invasive analytics, we don't target you with exploitative
+            advertisements, and we never sell your information.</p>
+        <p> Most AI we use is ran locally on your machine,
+            and we never use your private data to train an AI. In fact - anything that isn't a probable violation of
+            terms of service, or hasn't been reported by another user, will never be seen by any AI model on
+            Eridius servers.
+        </p>
+    </section>
+    <section>
+        <img width="100%" src="/privacy.svg" alt="Privacy is not optional" />
+    </section>
+</aside>
+<br />
+<aside>
+    <section>
+        <img width="100%" src="/security.svg" alt="You have the right to security" />
+    </section>
+    <section>
+        <h2>You have the right to security.</h2>
+        <p> All Eridius projects use encryption in one way or another. Every website ran by Eridius uses the latest in
+            encryption algorithms, and is protected by Cloudflare. Further, we enforce industry-standard security practices
+            for both users and employees. Rest assured, your trust is safe with Eridius.
+        </p>
+        <details>
+            <summary>More Details...</summary>
+            <p> We use Argon2id for password protection - which is resistant against most forms of attack. A lot
+                of your personal conversations and data remains encrypted with Pretty Good Protection (PGP) keys. We use HTTP/3,
+                courtesy of Cloudflare, and Cloudflare provisions our SSL certificates. We make an effort to encrypt data
+                expected to be private client-side, in addition to encryption server-side.
+            </p>
+            <p> Server-side encryption may not
+                protect your data from a hacker with complete control of our servers, but it does protect your data if
+                someone gains access to our database. Further, this encryption makes it harder to determine what data is
+                encrypted with your client-side key and what data is encrypted with our server-side key. This kind of onion
+                protection is standard with Eridius.
+            </p>
+        </details>
+    </section>
+</aside>
+<br />
+<section id="team">
+    <h2>Meet our Team</h2>
+    <div class="auto-grid">
+        <div class="card">
+            <h3>Eridian</h3>
+            <p>"The world's information belongs to the people."</p>
+            <hr />
+            <details>
+                <summary>Contact</summary>
+                <p><a href="mailto:eridian@eridi.us">eridian@eridi.us</a></p>
+                <p><a href="https://bsky.app/profile/eridian.eridi.us">@eridian.eridi.us on Bluesky</a></p>
+            </details>
+        </div>
+        <div class="card">
+            <h3>Silas</h3>
+            <p>"Live, Laugh, Lobotomy!"</p>
+            <hr />
+            <details>
+                <summary>Contact</summary>
+                <p><a href="mailto:silas@eridi.us">silas@eridi.us</a></p>
+            </details>
+        </div>
+        <div class="card">
+            <h3>Soap</h3>
+            <p>"Time waits for no one. All are equal in its flow, all lives borne to their end."</p>
+            <hr />
+            <details>
+                <summary>Contact</summary>
+                <p><a href="mailto:soap@eridi.us">soap@eridi.us</a></p>
+                <p><a href="https://www.deviantart.com/buttercream0">buttercream0 on DeviantArt</a></p>
+            </details>
+        </div>
+        <div class="card">
+            <h3>Shelter</h3>
+            <p>"I'm too autistic for icebreakers."</p>
+            <hr />
+            <details>
+                <summary>Contact</summary>
+                <p><a href="mailto:shelter@eridi.us">shelter@eridi.us</a></p>
+                <p><a href="https://bsky.app/profile/shelter.eridi.us">@shelter.eridi.us on Bluesky</a></p>
+            </details>
+        </div>
+    </div>
+</section>
+<br />
+<section id="new">
+    <h2>What's new</h2>
+    <p>These posts are from our <a rel="me" href="https://mastodon.social/@eridiusgroup">Mastodon</a>.</p>
+    <div id="posts" class="auto-grid"></div>
+</section>
+<script>
+    const posts = document.getElementById("posts")
+    posts.innerText = "Loading...";
+
+    fetch("https://mastodon.social/api/v1/accounts/114043102431589542/statuses?exclude_replies=true")
+        .then(response => response.json())
+        .then(data => {
+            posts.innerText = ""
+            data.forEach(post => {
+                const postElement = document.createElement("div")
+                const postContent = document.createElement("p")
+                const postSeperator = document.createElement("hr")
+                const postDate = document.createElement("p")
+
+                postElement.onclick = () => window.open(post.uri, "_blank")
+                postElement.classList.add("card")
+
+                postContent.innerHTML = post.content.split("<a href=\"https://mastodon.social/tags")[0]
+                postDate.innerText = "Posted on " + new Date(post.created_at).toLocaleDateString();
+
+                postElement.appendChild(postContent)
+                postElement.appendChild(postSeperator)
+                postElement.appendChild(postDate)
+
+                posts.appendChild(postElement)
+            })
+        })
+        .catch(error => {
+            posts.innerText = "Failed to load posts from Mastodon."
+        })
+
+
+    document.getElementById("share_btn").addEventListener('click', async event => {
+        if (navigator.share) {
+            navigator.share({
+                title: 'WebShare API Demo',
+                url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
+            }).then(() => {
+                console.log('Thanks for sharing!');
+            })
+                .catch(console.error);
+        } else {
+            await navigator.clipboard.writeText(window.location.href)
+            document.getElementById("copied").showModal()
+        }
+    });
+</script>

@@ -1,0 +1,12 @@
+name = 'Eridius'
+license = 'MIT'
+licenselink = 'https://github.com/eridius-group/theme/LICENSE'
+description = 'The standard Eridius Theme'
+homepage = 'https://github.com/eridius-group/theme'
+
+# Taxonomy terms
+tags = ['blog', 'company']
+
+# If the theme has a single author
+[author]
+  name = 'Eridius Group'

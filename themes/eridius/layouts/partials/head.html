@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta name="fediverse:creator" content="@eridiusgroup@mastodon.social">
+<meta name="title" content='{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}' />
+<meta name="description" content="Our goal is to produce user-friendly, privacy-respecting, security-focused, source-available software for the consumer." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ .Site.BaseURL }}" />
+<meta property="og:title" content='{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}' />
+<meta property="og:description" content="Our goal is to produce user-friendly, privacy-respecting, security-focused, source-available software for the consumer." />
+<meta property="og:image" content="https://eridius.org/banner.png" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="{{ .Site.BaseURL }}" />
+<meta property="twitter:title" content='{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}' />
+<meta property="twitter:description" content="Our goal is to produce user-friendly, privacy-respecting, security-focused, source-available software for the consumer." />
+<meta property="twitter:image" content="https://eridius.org/banner.png" />
+<link rel="icon" type="image/png" href="/icon.png" />
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+{{ partialCached "head/css.html" . }}
+{{ partialCached "head/js.html" . }}

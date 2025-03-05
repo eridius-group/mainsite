@@ -1,0 +1,21 @@
+{{ define "main" }}
+<br />
+{{ if .IsHome }} {{ else }}
+<section>
+  <h1>{{ .Title }}</h1>
+</section>
+{{ end }}
+
+{{ .Content }}
+<br />
+
+{{ if .IsHome }} {{ else }}
+<section id="blog">
+    {{ range .Pages }}
+      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+      {{ .Summary }}
+    {{ end }}
+</section>
+<br />
+{{ end }}
+{{ end }}
