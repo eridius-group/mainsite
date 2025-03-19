@@ -1,5 +1,4 @@
-<section>
-  <div class="auto-grid">
+<div class="auto-grid">
     {{ range .Site.Pages.ByTitle }}
     {{ if eq .Type "team"}}
     {{ if not (eq .Title "Teams") }}
@@ -10,5 +9,4 @@
     {{ end }}
     {{ end }}
     {{ end }}
-  </div>
-</section>
+</div>
