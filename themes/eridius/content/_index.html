@@ -69,47 +69,7 @@ draft = false
 <br />
 <section id="team">
     <h2>Meet our Team</h2>
-    <div class="auto-grid">
-        <div class="card">
-            <h3>Eridian</h3>
-            <p>"The world's information belongs to the people."</p>
-            <hr />
-            <details>
-                <summary>Contact</summary>
-                <p><a href="mailto:eridian@eridi.us">eridian@eridi.us</a></p>
-                <p><a href="https://bsky.app/profile/eridian.eridi.us">@eridian.eridi.us on Bluesky</a></p>
-            </details>
-        </div>
-        <div class="card">
-            <h3>Silas</h3>
-            <p>"Live, Laugh, Lobotomy!"</p>
-            <hr />
-            <details>
-                <summary>Contact</summary>
-                <p><a href="mailto:silas@eridi.us">silas@eridi.us</a></p>
-            </details>
-        </div>
-        <div class="card">
-            <h3>Soap</h3>
-            <p>"Time waits for no one. All are equal in its flow, all lives borne to their end."</p>
-            <hr />
-            <details>
-                <summary>Contact</summary>
-                <p><a href="mailto:soap@eridi.us">soap@eridi.us</a></p>
-                <p><a href="https://www.deviantart.com/buttercream0">buttercream0 on DeviantArt</a></p>
-            </details>
-        </div>
-        <div class="card">
-            <h3>Shelter</h3>
-            <p>"I'm too autistic for icebreakers."</p>
-            <hr />
-            <details>
-                <summary>Contact</summary>
-                <p><a href="mailto:shelter@eridi.us">shelter@eridi.us</a></p>
-                <p><a href="https://bsky.app/profile/shelter.eridi.us">@shelter.eridi.us on Bluesky</a></p>
-            </details>
-        </div>
-    </div>
+    {{< team  >}}
 </section>
 <br />
 <section id="new">
@@ -124,8 +84,10 @@ draft = false
     fetch("https://mastodon.social/api/v1/accounts/114043102431589542/statuses?exclude_replies=true")
         .then(response => response.json())
         .then(data => {
+            let inter = 0
             posts.innerText = ""
             data.forEach(post => {
+                if (inter++ > 8) return
                 const postElement = document.createElement("div")
                 const postContent = document.createElement("p")
                 const postSeperator = document.createElement("hr")
@@ -135,13 +97,18 @@ draft = false
                 postElement.classList.add("card")
 
                 postContent.innerHTML = post.content.split("<a href=\"https://mastodon.social/tags")[0]
+
                 postDate.innerText = "Posted on " + new Date(post.created_at).toLocaleDateString();
 
                 postElement.appendChild(postContent)
                 postElement.appendChild(postSeperator)
                 postElement.appendChild(postDate)
 
-                posts.appendChild(postElement)
+                if (postContent.innerText.length === 0) {
+                    inter--
+                } else {
+                    posts.appendChild(postElement)
+                }
             })
         })
         .catch(error => {
@@ -152,8 +119,8 @@ draft = false
     document.getElementById("share_btn").addEventListener('click', async event => {
         if (navigator.share) {
             navigator.share({
-                title: 'WebShare API Demo',
-                url: 'https://codepen.io/ayoisaiah/pen/YbNazJ'
+                title: window.title,
+                url: window.location
             }).then(() => {
                 console.log('Thanks for sharing!');
             })

@@ -1,21 +1,13 @@
 {{ define "main" }}
-<br />
-{{ if .IsHome }} {{ else }}
-<section>
-  <h1>{{ .Title }}</h1>
-</section>
-{{ end }}
-
 {{ .Content }}
 <br />
-
 {{ if .IsHome }} {{ else }}
-<section id="blog">
     {{ range .Pages }}
+    <section id="blog">
       <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
       {{ .Summary }}
+    </section>
+    <br />
     {{ end }}
-</section>
-<br />
 {{ end }}
 {{ end }}

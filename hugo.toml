@@ -10,7 +10,7 @@ weight = 10
 
 [[menus.main]]
 name = 'Team'
-url = '/#team'
+url = '/team'
 weight = 20
 
 [[menus.main]]

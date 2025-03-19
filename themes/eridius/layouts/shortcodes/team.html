@@ -1,0 +1,14 @@
+<section>
+  <div class="auto-grid">
+    {{ range .Site.Pages.ByTitle }}
+    {{ if eq .Type "team"}}
+    {{ if not (eq .Title "Teams") }}
+    <div class="card">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      {{ .Summary }}
+    </div>
+    {{ end }}
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
