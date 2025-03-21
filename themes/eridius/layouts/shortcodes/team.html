@@ -4,7 +4,7 @@
     {{ if not (eq .Title "Teams") }}
     <div class="card">
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-      {{ .Summary }}
+      {{ .Content }}
     </div>
     {{ end }}
     {{ end }}

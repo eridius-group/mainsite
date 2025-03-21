@@ -1,13 +1,12 @@
 {{ define "main" }}
 {{ .Content }}
-<br />
 {{ if .IsHome }} {{ else }}
 <section>
 <div class="auto-grid">
 {{ range .Pages }}
   <div class="card">
   <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ .Summary }}
+  {{ .Content }}
   </div>
   {{ end }}
 </div>
