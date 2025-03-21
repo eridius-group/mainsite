@@ -1,5 +1,12 @@
-<section>
-    <h1>Welcome to Eridius</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-</section>
+<header>
+    <div class="Logo center">
+        <img src="/logo.png" alt="Eridius Logo" width="100rem" />
+    </div>
+    <div class="Greeting left">
+        <h1 class="nomargin">Welcome to Eridius</h1>
+    </div>
+    <div class="Menu left">
+        {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    </div>
+</header>
 <br />
