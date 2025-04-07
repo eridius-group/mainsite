@@ -132,10 +132,13 @@ footer {
 
 .card, dialog[open] {
   border: 1px solid #c1cece;
-
   hr {
     border-bottom: solid #c1cece 1px;
   }
+}
+
+hr {
+  border-bottom: solid #c1cece 1px;
 }
 
 header {
