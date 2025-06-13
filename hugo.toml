@@ -15,5 +15,5 @@ weight = 20
 
 [[menus.main]]
 name = 'Blog'
-pageRef = '/blog'
+url = 'https://blog.eridius.org'
 weight = 30
